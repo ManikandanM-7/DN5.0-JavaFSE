@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Spring XML Bean Configuration — applicationContext.xml
+    DN 5.0 Week 3 | Exercise 1 (): Basic Spring Application
+    Exercise 2 (): Dependency Injection (Constructor + Setter)
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!
+    <!-- EXERCISE 1: Basic Beans                                      -->
+    <!
+
+    <!-- Simple bean with property injection (Setter Injection) -->
+    <bean id="greetingService" class="com.cognizant.spring.GreetingService">
+        <property name="greeting" value="Vanakkam"/>
+    </bean>
+
+    <!
+    <!-- EXERCISE 2: Dependency Injection                             -->
+    <!
+
+    <!-- Bean with setter injection for primitive + reference properties -->
+    <bean id="messageService" class="com.cognizant.spring.EmailMessageService">
+        <property name="smtpHost" value="smtp.gmail.com"/>
+        <property name="smtpPort" value="587"/>
+    </bean>
+
+    <!-- NotificationService depends on messageService — Spring injects it -->
+    <bean id="notificationService" class="com.cognizant.spring.NotificationService">
+        <!-- Setter DI — injects the emailMessageService bean above -->
+        <property name="messageService" ref="messageService"/>
+    </bean>
+
+    <!-- Constructor Injection example -->
+    <bean id="bankService" class="com.cognizant.spring.di.BankBean">
+        <constructor-arg value="State Bank of India"/>
+        <constructor-arg value="SBI001"/>
+        <constructor-arg ref="messageService"/>
+    </bean>
+
+</beans>
