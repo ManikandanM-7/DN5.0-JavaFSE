@@ -1,0 +1,71 @@
+version: '3.8'
+
+# docker compose for the microservices from week 4
+# start all 4 services together
+services:
+
+  eureka-server:
+    image: openjdk:17-jdk-slim
+    container_name: eureka-server
+    working_dir: /app
+    volumes:
+      - ../../Week4_REST_Microservices/Microservices/eureka-discovery-server/target:/app
+    command: java -jar eureka-discovery-server-1.0.0.jar
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-net
+
+  account-service:
+    image: openjdk:17-jdk-slim
+    container_name: account-service
+    working_dir: /app
+    volumes:
+      - ../../Week4_REST_Microservices/Microservices/account-service/target:/app
+    command: java -jar account-service-1.0.0.jar
+    ports:
+      - "8081:8081"
+    environment:
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+    networks:
+      - microservices-net
+
+  loan-service:
+    image: openjdk:17-jdk-slim
+    container_name: loan-service
+    working_dir: /app
+    volumes:
+      - ../../Week4_REST_Microservices/Microservices/loan-service/target:/app
+    command: java -jar loan-service-1.0.0.jar
+    ports:
+      - "8082:8082"
+    environment:
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+    networks:
+      - microservices-net
+
+  api-gateway:
+    image: openjdk:17-jdk-slim
+    container_name: api-gateway
+    working_dir: /app
+    volumes:
+      - ../../Week4_REST_Microservices/Microservices/api-gateway/target:/app
+    command: java -jar api-gateway-1.0.0.jar
+    ports:
+      - "9090:9090"
+    environment:
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+      - account-service
+      - loan-service
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    driver: bridge
