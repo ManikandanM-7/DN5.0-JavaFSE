@@ -40,7 +40,7 @@ public class SpringCoreApp {
         // Ex 2: Get bean with DI — EmailService depends on MessageService
         NotificationService notificationService =
             context.getBean("notificationService", NotificationService.class);
-        notificationService.sendNotification("mani@email.com", "DN 5.0 assessment submitted!");
+        notificationService.sendNotification("mani@email.com", "
 
         // Show bean names registered in container
         System.out.println("\n--- Beans in Spring Container ---");

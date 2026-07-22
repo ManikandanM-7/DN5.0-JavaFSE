@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     Spring XML Bean Configuration — applicationContext.xml
-    DN 5.0 Week 3 | Exercise 1 (): Basic Spring Application
     Exercise 2 (): Dependency Injection (Constructor + Setter)
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
