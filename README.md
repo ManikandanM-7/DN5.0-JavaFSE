@@ -1,6 +1,6 @@
 # Java FSE Hands-on Solutions
 
-Solutions for the Cognizant DN program exercises.
+Solutions for the the program exercises.
 
 College: M. Kumarasamy College of Engineering, Karur
 
