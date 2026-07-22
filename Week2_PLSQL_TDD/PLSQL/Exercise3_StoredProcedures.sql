@@ -1,5 +1,4 @@
 
--- DN 5.0 - Week 2 | Module 3: PL/SQL Programming
 -- Stored Procedures and Functions
 
 

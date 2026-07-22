@@ -1,9 +1,8 @@
 
--- DN 5.0 - Week 2 | Module 3: PL/SQL Programming
 -- Control Structures
 
 
--- Scenario: A bank wants to apply interest rates and flag customers
+-- A bank wants to apply interest rates and flag customers
 -- based on their account balance and loan status using control structures.
 
 
